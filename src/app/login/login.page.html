@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button color="primary">
-        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        <ion-icon slot="icon-only"  defaultHref="/" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
@@ -17,15 +17,9 @@
     <img src="assets/logo.png">
   </div>
 
-  <form id="form" (ngSubmit)="loginUser(email.value, password.value)">
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input #email type="email" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input #password type="password" required></ion-input>
-    </ion-item>
-    <ion-button expand="block" shape="round" type="submit">Login</ion-button>
+  <form id="form">
+    <app-input placeholder="Email"></app-input>
+    <app-input type="password" placeholder="Password"></app-input>
+    <ion-button expand="block" shape="round" (click)="LoginUser()">Login</ion-button>
   </form>
 </ion-content>

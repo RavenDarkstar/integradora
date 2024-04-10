@@ -1,22 +1,23 @@
-import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AngularFireModule } from '@angular/fire/compat'; // Import using the `compat` sub-package for compatibility
-import { AngularFireAuthModule } from '@angular/fire/compat/auth'; // Import using the `compat` sub-package for compatibility
-import { environment } from '../environments/environment'; // Import your Firebase configuration
+import { IonicModule } from '@ionic/angular';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth'; // Importa AngularFireAuthModule
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { RouteReuseStrategy } from '@angular/router';
+import { IonicRouteStrategy } from '@ionic/angular';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule, // Import BrowserModule for browser-related functionalities
-    AngularFireModule.initializeApp(environment.firebaseConfig), // Initialize AngularFire with your Firebase configuration
-    AngularFireAuthModule, // Import AngularFireAuthModule for Firebase Authentication functionalities
-    IonicModule.forRoot() // Import IonicModule for Ionic functionalities
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig), // Inicializa AngularFire con tu configuración de Firebase
+    AngularFireAuthModule // Importa AngularFireAuthModule aquí
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
