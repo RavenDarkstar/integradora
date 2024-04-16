@@ -13,8 +13,8 @@
   </div>
 
   <form id="form" [formGroup]="loginForm">
-    <app-input placeholder="Email" formControlName="email"></app-input>
-    <app-input type="password" placeholder="Password" formControlName="password"></app-input>
+    <ion-input placeholder="Email" formControlName="email"></ion-input>
+    <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
     <ion-button expand="block" shape="round" (click)="loginUser()">Login</ion-button>
   </form>
   <p>Don't have an account? <a routerLink="/signup">Register</a></p>
