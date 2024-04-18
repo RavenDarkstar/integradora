@@ -8,13 +8,13 @@
 </ion-header>
 
 <ion-content>
-  <h1>Create your<br/>Account</h1>
+  <h1>Únete a nosotros</h1>
 
   <form id="form" [formGroup]="signupForm">
-    <ion-input placeholder="Your Name" formControlName="username"></ion-input>
+    <ion-input placeholder="Tu nombre" formControlName="username"></ion-input>
     <ion-input placeholder="Email" formControlName="email"></ion-input>
-    <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-    <ion-button expand="block" shape="round" (click)="signupUser()">Join Us</ion-button>
+    <ion-input type="password" placeholder="Contraseña" formControlName="password"></ion-input>
+    <ion-button expand="block" shape="round" (click)="signupUser()">Crear Cuenta</ion-button>
   </form>
-  <p>By pressing 'Join Us' you agree to our <br/>terms & conditions.</p>
+  <p>Al hacer click en 'Crear Cuenta' aceptas nuestros <br/>términos y condiciones.</p>
 </ion-content>

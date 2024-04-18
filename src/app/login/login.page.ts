@@ -24,21 +24,21 @@ export class LoginPage {
     // Alerta 1 -- El usuario dejó campos sin llenar
     const invalidAlert = await this.alertController.create({
       header: 'Error',
-      message: 'Please fill out all fields.',
+      message: 'Favor de llenar todos los campos.',
       buttons: ['OK'],
     });
 
     // Alerta 2 -- El usuario no ingresó un email válido
     const emailAlert = await this.alertController.create({
       header: 'Error',
-      message: 'Please input a valid email address.',
+      message: 'Favor de ingresar un correo válido.',
       buttons: ['OK'],
     });
 
-    // Alerta 3 -- El usuario no ingresó un email válido
+    // Alerta 3 -- Usuario o contraseña incorrectos
     const authAlert = await this.alertController.create({
       header: 'Error',
-      message: 'One or more credentials are incorrect.',
+      message: 'Una o más credenciales son incorrectas.',
       buttons: ['OK'],
     });
 

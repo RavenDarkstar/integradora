@@ -6,14 +6,14 @@
 
 <ion-content>
   <div id="header">
-    <h1>Login</h1>
+    <h1>Iniciar sesión</h1>
     <img src="assets/logo.png">
   </div>
 
   <form id="form" [formGroup]="loginForm">
     <ion-input placeholder="Email" formControlName="email"></ion-input>
-    <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-    <ion-button expand="block" shape="round" (click)="loginUser()">Login</ion-button>
+    <ion-input type="password" placeholder="Contraseña" formControlName="password"></ion-input>
+    <ion-button expand="block" shape="round" (click)="loginUser()">Iniciar sesión</ion-button>
   </form>
-  <p>Don't have an account? <a routerLink="/signup">Register</a></p>
+  <p>¿No tienes una cuenta? <a routerLink="/signup">Regístrate</a>.</p>
 </ion-content>

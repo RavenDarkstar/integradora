@@ -1,20 +1,20 @@
 /* Estilos personalizados para la página principal */
 
 .sidebar {
-    background-color: #8c0101; /* Color rojo */
-    color: #fff; /* Texto en color blanco */
-    height: 89vh; /* Altura completa */
-    padding-top: 20px; /* Espaciado superior */
+    //background-color: #ed2020;
+    background-color: #1e1e1e;
+    color: #fff;
+    height: 89vh;
+    padding: 0px;
   }
   
   .sidebar ion-item {
-    --background: #ffffff00; /* Fondo transparente */
-    --color: #fff; /* Texto en color blanco */
-    --padding-start: 20px; /* Espaciado al inicio del ítem */
+    --background: #ffffff00;
+    --color: #989898;
   }
   
   .sidebar ion-icon {
-    margin-end: 10px; /* Margen a la derecha del icono */
+    margin-right: 10px;
   }
 
   .sidebar ion-list {
@@ -24,6 +24,10 @@
   .sidebar ion-label {
     --background: #ffffff00;
   }
+
+.hover-effect:hover {
+  background-color: #333333;
+}
 
 .fullscreen-button {
   position: fixed;

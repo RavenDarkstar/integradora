@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="end">
-      <ion-button (click)="logout()" color="danger">Cerrar sesión</ion-button> <!-- Cambiado a Cerrar sesión y color rojo -->
+      <ion-button (click)="logout()" color="primary">Cerrar sesión</ion-button>
     </ion-buttons>
     <ion-title>FilaXpress</ion-title>
   </ion-toolbar>
@@ -12,65 +12,90 @@
     <ion-row>
       <!-- Menú lateral -->
       <ion-col size="3" class="sidebar">
-        <ion-list>
-          <ion-item routerLink="/admin">
+        <ion-list lines="full">
+          <ion-item class="hover-effect" (click)="showContent('admin')">
             <ion-icon name="business"></ion-icon>
-            <ion-label>Administración</ion-label>
+            <ion-label>Administrar</ion-label>
           </ion-item>
-          <ion-item routerLink="/register">
+          <ion-item class="hover-effect" (click)="showContent('register')">
             <ion-icon name="person-add"></ion-icon>
             <ion-label>Registro</ion-label>
           </ion-item>
-          <ion-item routerLink="/appointments">
+          <ion-item class="hover-effect" (click)="showContent('appointments')">
             <ion-icon name="calendar"></ion-icon>
             <ion-label>Turnos</ion-label>
           </ion-item>
-          <ion-item routerLink="/reports">
+          <ion-item class="hover-effect" (click)="showContent('reports')">
             <ion-icon name="document-text"></ion-icon>
-            <ion-label>Informes</ion-label>
+            <ion-label>Informe</ion-label>
           </ion-item>
         </ion-list>
       </ion-col>
 
       <!-- Contenedor de contenido principal -->
-      <ion-col size="9">
-        <ion-grid>
+      <ion-col size="9" #mainContainer>
+
+        <!------------------------ ADMINISTRAR ------------------------>
+        <ion-grid *ngIf="selectedItem === 'admin'">
+          <ion-row>
+            <!-- Admin content here -->
+            <p>ADMIN</p>
+          </ion-row>
+        </ion-grid>
+
+        <!------------------------ REGISTRO ------------------------>
+        <ion-grid *ngIf="selectedItem === 'register'">
+          <ion-row>
+            <!-- Register content here -->
+            <p>REGISTRO</p>
+          </ion-row>
+        </ion-grid>
+
+        <!------------------------ TURNOS ------------------------>
+        <ion-grid *ngIf="selectedItem === 'appointments'">
+          <ion-row>
+            <!-- Appointments content here -->
+            <p>TURNOS</p>
+          </ion-row>
+        </ion-grid>
+        <!------------------------ INFORME ------------------------>
+        <ion-grid *ngIf="selectedItem === 'reports'">
           <ion-row>
             <!-- Contenedor de Por atender -->
-            <ion-col size="4">
+            <ion-col size="6">
               <ion-card>
                 <ion-card-header>
                   Por atender
                 </ion-card-header>
                 <ion-card-content>
-                  <!-- Contenido por atender -->
+                  {{ pendingCount$ | async }}
                 </ion-card-content>
               </ion-card>
             </ion-col>
 
             <!-- Contenedor de Finalizados -->
-            <ion-col size="4">
+            <ion-col size="6">
               <ion-card>
                 <ion-card-header>
                   Finalizados
                 </ion-card-header>
                 <ion-card-content>
-                  <!-- Contenido finalizados -->
+                  {{ nonPendingCount$ | async }}
                 </ion-card-content>
               </ion-card>
             </ion-col>
 
-            <!-- Contenedor de Cancelados -->
+            <!-- Contenedor de Cancelados 
             <ion-col size="4">
               <ion-card>
                 <ion-card-header>
                   Cancelados
                 </ion-card-header>
-                <ion-card-content>
-                  <!-- Contenido cancelados -->
+                <ion-card-content> -->
+                  <!-- Contenido cancelados 
                 </ion-card-content>
               </ion-card>
-            </ion-col>
+            </ion-col> -->
           </ion-row>
 
           <!-- Contenedor para la gráfica de turnos -->
@@ -81,7 +106,8 @@
                   Gráfica de Turnos Atendidos
                 </ion-card-header>
                 <ion-card-content>
-                  <!-- Contenido de la gráfica de turnos -->
+                  <!-- gráfica de turnos -->
+                  <div id="chart_div" style="width: 100%; height: 300px;"></div>
                 </ion-card-content>
               </ion-card>
             </ion-col>

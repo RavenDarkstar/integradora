@@ -26,21 +26,21 @@ export class SignupPage {
     // Alerta 1 -- El usuario dejó campos sin llenar
     const invalidAlert = await this.alertController.create({
       header: 'Error',
-      message: 'Please fill out all fields.',
+      message: 'Favor de llenar todos los campos.',
       buttons: ['OK'],
     });
 
     // Alerta 2 -- El usuario no ingresó un email válido
     const emailAlert = await this.alertController.create({
       header: 'Error',
-      message: 'Please input a valid email address.',
+      message: 'Favor de ingresar un correo válido.',
       buttons: ['OK'],
     });
 
-    // Alerta 3 -- La contraseña debe tener al menos 6 caracteres
+    // Alerta 3 -- La contraseña es muy corta
     const passwordLengthAlert = await this.alertController.create({
       header: 'Error',
-      message: 'Password must be at least 6 characters long.',
+      message: 'La contraseña debe tener mínimo 6 caracteres.',
       buttons: ['OK'],
     });
 
