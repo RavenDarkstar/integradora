@@ -1,0 +1,52 @@
+{
+    "name": "FilaXpress",
+    "short_name": "FilaXpress",
+    "description": "A Progressive Web App",
+    "start_url": "./?utm_source=web_app_manifest",
+    "scope": "./",
+    "display": "standalone",
+    "background_color": "#1e1e1e",
+    "theme_color": "#ed2020",
+    "lang": "es-MX",
+    "icons": [
+      {
+        "src": "icon/favicon-16x16.png",
+        "sizes": "16x16",
+        "type": "image/png",
+        "purpose": "maskable"
+      },
+      {
+        "src": "icon/favicon-32x32.png",
+        "sizes": "32x32",
+        "type": "image/png",
+        "purpose": "maskable"
+      },
+      {
+        "src": "icon/apple-touch-icon.png",
+        "sizes": "180x180",
+        "type": "image/png"
+      },
+      {
+        "src": "icon/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }
+    ],
+    "screenshots":[
+      {
+        "src": "imgs/s_narrow.png",
+        "sizes": "675x642",
+        "type": "image/png",
+        "form_factor": "narrow",
+        "label": "Application"
+      },
+      {
+        "src": "imgs/s_wide.png",
+        "sizes": "1366x642",
+        "type": "image/png",
+        "form_factor": "wide",
+        "label": "Application"
+      }
+    ]
+  }
+  

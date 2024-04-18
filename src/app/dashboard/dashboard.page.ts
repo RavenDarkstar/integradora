@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
@@ -11,10 +11,12 @@ declare var google: any;
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
 })
-export class DashboardPage implements OnInit {
+export class DashboardPage implements AfterViewInit {
   selectedItem: string = '';
   pendingCount$: Observable<number>;
   nonPendingCount$: Observable<number>;
+  
+  @ViewChild('chartDiv', { static: false }) chartDiv: ElementRef | undefined;
 
   constructor(private platform: Platform, private afAuth:AngularFireAuth, private router:Router, private firestore:AngularFirestore) {
     // Contar el número de turnos por atender
@@ -26,9 +28,13 @@ export class DashboardPage implements OnInit {
       ref.where('pending', '==', false)).valueChanges().pipe(map(appointments => appointments.length));
   }
 
-  ngOnInit() {
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(() => this.drawChart());
+  ngOnInit(){}
+
+  ngAfterViewInit() {
+    if (this.chartDiv) {
+      google.charts.load('current', { 'packages': ['corechart'] });
+      google.charts.setOnLoadCallback(() => this.drawChart());
+    }
   }
 
   logout() {

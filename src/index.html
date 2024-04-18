@@ -13,6 +13,7 @@
   <meta name="msapplication-tap-highlight" content="no" />
 
   <link rel="icon" type="image/png" href="assets/icon/android-chrome-512x512.png" />
+  <link rel="manifest" href="./assets/manifest.json">
 
   <!-- add to homescreen for ios -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -25,3 +26,14 @@
 
 </html>
 <script src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('assets/servwork.js', { scope: '/' })
+      .then((registration) => {
+        console.log('Service Worker registrado con éxito:', registration);
+      })
+      .catch((error) => {
+        console.error('Error al registrar el Service Worker:', error);
+      });
+  }
+</script>
