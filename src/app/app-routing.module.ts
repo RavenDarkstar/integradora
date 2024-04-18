@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'default',
     pathMatch: 'full'
   },
   {
@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'default',
+    loadChildren: () => import('./default/default.module').then( m => m.DefaultPageModule)
   },
 
 ];
