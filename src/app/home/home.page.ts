@@ -10,6 +10,7 @@ export class HomePage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // Aquí puedes añadir lógica si es necesario
   }
 
 }

@@ -1,0 +1,32 @@
+/* Estilos personalizados para la página principal */
+
+.sidebar {
+    background-color: #8c0101; /* Color rojo */
+    color: #fff; /* Texto en color blanco */
+    height: 89vh; /* Altura completa */
+    padding-top: 20px; /* Espaciado superior */
+  }
+  
+  .sidebar ion-item {
+    --background: #ffffff00; /* Fondo transparente */
+    --color: #fff; /* Texto en color blanco */
+    --padding-start: 20px; /* Espaciado al inicio del ítem */
+  }
+  
+  .sidebar ion-icon {
+    margin-end: 10px; /* Margen a la derecha del icono */
+  }
+
+  .sidebar ion-list {
+    --background: #ffffff00;
+  }
+
+  .sidebar ion-label {
+    --background: #ffffff00;
+  }
+
+.fullscreen-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
