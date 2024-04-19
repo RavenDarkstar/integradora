@@ -134,22 +134,22 @@ export class DashboardPage implements AfterViewInit {
   }
 
   drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Task', 'Hours per Day'],
-      ['Work',     11],
-      ['Eat',      2],
-      ['Commute',  2],
-      ['Watch TV', 2],
-      ['Sleep',    7]
-    ]);
+    // Fetch data from Firestore and process it
+    const data = [['Task', 'Turnos atendidos']];
+    this.appointments.forEach(appointment => {
+      data.push([appointment.deadline, parseInt(appointment.time)]);
+    });
 
-    var options = {
-      title: 'My Daily Activities',
-      pieHole: 0.4,
+    const dataTable = google.visualization.arrayToDataTable(data);
+
+    const options = {
+      title: '',
+      curveType: 'function',
+      legend: { position: 'bottom' }
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('chartDiv'));
-    chart.draw(data, options);
+    const chart = new google.visualization.LineChart(document.getElementById('chartDiv'));
+    chart.draw(dataTable, options);
   }
 
   toggleFullScreen() {
