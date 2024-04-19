@@ -1,27 +1,27 @@
 <div class="form-container">
   <ion-title>Registrar un nuevo cliente</ion-title>
-    <form>
+    <form [formGroup]="addClientForm">
       <ion-grid>
         
         <ion-row>
           <ion-col size="6">
             <ion-label>Nombre</ion-label>
-            <ion-input formControlName="name"></ion-input>
+            <ion-input formControlName="nombre"></ion-input>
           </ion-col>
           <ion-col size="6">
             <ion-label>Apellido</ion-label>
-            <ion-input formControlName="lastname"></ion-input>
+            <ion-input formControlName="apellido"></ion-input>
           </ion-col>
         </ion-row>
     
         <ion-row>
           <ion-col size="6">
             <ion-label>Dirección</ion-label>
-            <ion-input formControlName="address"></ion-input>
+            <ion-input formControlName="direccion"></ion-input>
           </ion-col>
           <ion-col size="6">
             <ion-label>Teléfono</ion-label>
-            <ion-input formControlName="phone"></ion-input>
+            <ion-input formControlName="telefono"></ion-input>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -29,6 +29,6 @@
 </div>
 <ion-footer>
   <div class="ion-text-right">
-    <ion-button shape="round" color="light" (click)="dismiss()">Cancelar</ion-button><ion-button shape="round">Confirmar</ion-button>
+    <ion-button shape="round" color="light" (click)="dismiss()">Cancelar</ion-button><ion-button shape="round" (click)="addClient()">Confirmar</ion-button>
   </div>
 </ion-footer>

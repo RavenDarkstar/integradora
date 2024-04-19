@@ -48,13 +48,19 @@
                         <th>Nombre</th>
                         <th>Dirección</th>
                         <th>Teléfono</th>
+                        <th>Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let client of clients$ | async" class="ion-text-center">
+                      <tr *ngFor="let client of clients; let i = index">
                         <td>{{ client.nombre }} {{ client.apellido }}</td>
                         <td>{{ client.direccion }}</td>
                         <td>{{ client.telefono }}</td>
+                        <td>
+                          <a style="cursor:pointer;">Editar</a>
+                          &nbsp;
+                          <a style="cursor:pointer;" (click)="deleteClient(clients[i].id)">Eliminar</a>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -106,13 +112,19 @@
                           <th>Fecha y hora</th>
                           <th>Prioridad</th>
                           <th>Pendiente</th>
+                          <th>Acciones</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let appointment of appointments$ | async">
+                        <tr *ngFor="let appointment of appointments; let i = index">
                           <td>{{ appointment.deadline }}, {{ appointment.time }}</td>
                           <td>{{ appointment.priority }}</td>
                           <td>{{ appointment.pending }}</td>
+                          <td>
+                            <a style="cursor:pointer;">Editar</a>
+                            &nbsp;
+                            <a style="cursor:pointer;" (click)="deleteAppointment(appointments[i].id)">Eliminar</a>
+                          </td>
                         </tr>
                       </tbody>
                     </table>

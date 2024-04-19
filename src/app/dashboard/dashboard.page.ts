@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { ModalController, Platform } from '@ionic/angular';
 import { Observable, map } from 'rxjs';
@@ -17,21 +17,38 @@ export class DashboardPage implements AfterViewInit {
   selectedItem: string = '';
   pendingCount$: Observable<number>;
   nonPendingCount$: Observable<number>;
+
+  // Variables para mostrar y borrar turnos
+  appointmentsCollection: AngularFirestoreCollection<any>;
   appointments$: Observable<any[]>;
-  users$: Observable<any[]>;
+  appointments: any[] = [];
+
+  // Variables para mostrar y borrar clientes
+  clientsCollection: AngularFirestoreCollection<any>;
   clients$: Observable<any[]>;
+  clients: any[] = [];
+
+  users$: Observable<any[]>;
   
   @ViewChild('chartDiv', { static: false }) chartDiv: ElementRef | undefined;
 
   constructor(private platform: Platform, private afAuth:AngularFireAuth, private router:Router, private firestore:AngularFirestore, private modalController:ModalController) {
     // Seleccionar turnos
-    this.appointments$ = this.firestore.collection('appointments').valueChanges();
+    this.appointmentsCollection = this.firestore.collection('appointments');
+    this.appointments$ = this.appointmentsCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => ({ id: a.payload.doc.id, ...a.payload.doc.data() })))
+    );
+    this.appointments$.subscribe(appointments => this.appointments = appointments);
 
     // Seleccionar usuarios
     this.users$ = this.firestore.collection('users').valueChanges();
 
     // Seleccionar clientes
-    this.clients$ = this.firestore.collection('clients').valueChanges();
+    this.clientsCollection = this.firestore.collection('clients');
+    this.clients$ = this.clientsCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => ({ id: a.payload.doc.id, ...a.payload.doc.data() })))
+    );
+    this.clients$.subscribe(clients => this.clients = clients);
 
     // Contar el número de turnos por atender
     this.pendingCount$ = this.firestore.collection('appointments', ref =>
@@ -40,6 +57,24 @@ export class DashboardPage implements AfterViewInit {
     // Contar el número de turnos finalizados
     this.nonPendingCount$ = this.firestore.collection('appointments', ref =>
       ref.where('pending', '==', false)).valueChanges().pipe(map(appointments => appointments.length));
+  }
+
+  // Borrar cliente
+  deleteClient(documentId: string) {
+    try {
+      this.firestore.collection('clients').doc(documentId).delete();
+    } catch (error) {
+      console.error('Error deleting appointment:', error);
+    }
+  }
+
+  // Borrar turno
+  deleteAppointment(documentId: string) {
+    try {
+      this.firestore.collection('appointments').doc(documentId).delete();
+    } catch (error) {
+      console.error('Error deleting appointment:', error);
+    }
   }
 
   ngOnInit(){}

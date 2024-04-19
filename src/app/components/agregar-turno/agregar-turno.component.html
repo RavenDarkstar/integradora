@@ -1,6 +1,6 @@
 <div class="form-container">
   <ion-title>Registrar un nuevo turno</ion-title>
-    <form>
+    <form [formGroup]="addAppointmentForm">
       <ion-grid>
 
         <ion-row>
@@ -36,6 +36,6 @@
 </div>
 <ion-footer>
   <div class="ion-text-right">
-    <ion-button shape="round" color="light" (click)="dismiss()">Cancelar</ion-button><ion-button shape="round">Confirmar</ion-button>
+    <ion-button shape="round" color="light" (click)="dismiss()">Cancelar</ion-button><ion-button shape="round" (click)="addAppointment()">Confirmar</ion-button>
   </div>
 </ion-footer>
