@@ -17,7 +17,7 @@ RUN npm install -g @ionic/cli cordova
 COPY . .
 
 # Expone el puerto 8100 para acceder a la aplicación Ionic
-EXPOSE 8100
+EXPOSE 8101
 
 # Ejecuta el comando "ionic serve" al iniciar el contenedor
 CMD ["ionic", "serve", "--host=0.0.0.0"]
