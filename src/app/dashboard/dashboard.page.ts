@@ -120,25 +120,36 @@ export class DashboardPage implements AfterViewInit {
 
   showContent(item: string) {
     this.selectedItem = item;
+    var chartContainer = document.getElementById('chartContainer');
+    if (this.chartDiv) {
+      if (item === 'reports') {
+        this.chartDiv.nativeElement.classList.remove('chart-hidden');
+        chartContainer?.classList.remove('card-hidden');
+        this.drawChart();
+      } else {
+        this.chartDiv.nativeElement.classList.add('chart-hidden');
+        chartContainer?.classList.add('card-hidden');
+      }
+    }
   }
 
   drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Task', 'Hours per Day'],
-      ['Work',     11],
-      ['Eat',      2],
-      ['Commute',  2],
-      ['Watch TV', 2],
-      ['Sleep',    7]
-    ]);
+    // Fetch data from Firestore and process it
+    const data = [['Task', 'Turnos atendidos']];
+    this.appointments.forEach(appointment => {
+      data.push([appointment.deadline, parseInt(appointment.time)]);
+    });
 
-    var options = {
-      title: 'My Daily Activities',
-      pieHole: 0.4,
+    const dataTable = google.visualization.arrayToDataTable(data);
+
+    const options = {
+      title: '',
+      curveType: 'function',
+      legend: { position: 'bottom' }
     };
 
-    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
+    const chart = new google.visualization.LineChart(document.getElementById('chartDiv'));
+    chart.draw(dataTable, options);
   }
 
   toggleFullScreen() {
