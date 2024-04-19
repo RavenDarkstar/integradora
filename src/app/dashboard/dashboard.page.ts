@@ -120,6 +120,17 @@ export class DashboardPage implements AfterViewInit {
 
   showContent(item: string) {
     this.selectedItem = item;
+    var chartContainer = document.getElementById('chartContainer');
+    if (this.chartDiv) {
+      if (item === 'reports') {
+        this.chartDiv.nativeElement.classList.remove('chart-hidden');
+        chartContainer?.classList.remove('card-hidden');
+        this.drawChart();
+      } else {
+        this.chartDiv.nativeElement.classList.add('chart-hidden');
+        chartContainer?.classList.add('card-hidden');
+      }
+    }
   }
 
   drawChart() {
@@ -137,7 +148,7 @@ export class DashboardPage implements AfterViewInit {
       pieHole: 0.4,
     };
 
-    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+    var chart = new google.visualization.PieChart(document.getElementById('chartDiv'));
     chart.draw(data, options);
   }
 

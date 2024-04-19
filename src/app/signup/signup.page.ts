@@ -56,7 +56,7 @@ export class SignupPage {
           await this.firestore.collection('users').doc(userCredential.user.uid).set({
             username: username,
             email: email,
-            role: 'user'
+            role: 'empleado'
             // La contraseña no se guarda como texto en la colección por razones de seguridad
           });
           
