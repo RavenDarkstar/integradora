@@ -15,7 +15,7 @@
         <ion-list lines="full">
           <ion-item class="hover-effect" (click)="showContent('admin')">
             <ion-icon name="business"></ion-icon>
-            <ion-label>Administrar</ion-label>
+            <ion-label>Clientes</ion-label>
           </ion-item>
           <ion-item class="hover-effect" (click)="showContent('register')">
             <ion-icon name="person-add"></ion-icon>
@@ -35,11 +35,34 @@
       <!-- Contenedor de contenido principal -->
       <ion-col size="9" #mainContainer>
 
-        <!------------------------ ADMINISTRAR ------------------------>
+        <!------------------------ CLIENTES ------------------------>
         <ion-grid *ngIf="selectedItem === 'admin'">
           <ion-row>
             <!-- Admin content here -->
-            <p>ADMIN</p>
+            <ion-col size="12">
+              <ion-card>
+                <ion-card-content>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let client of clients$ | async" class="ion-text-center">
+                        <td>{{ client.nombre }} {{ client.apellido }}</td>
+                        <td>{{ client.direccion }}</td>
+                        <td>{{ client.telefono }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </ion-card-content>
+              </ion-card>
+              <!-- Hacer click en el botón abrirá un modal -->
+              <ion-button expand="block" shape="round" (click)="abrirModalClientes()">Agregar cliente</ion-button>
+            </ion-col>
           </ion-row>
         </ion-grid>
 
@@ -67,8 +90,6 @@
                   </table>
                 </ion-card-content>
               </ion-card>
-              <!-- Hacer click en el botón abrirá un modal -->
-              <ion-button expand="block" shape="round">Agregar usuario</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -98,7 +119,7 @@
                   </ion-card-content>
                 </ion-card>
                 <!-- Hacer click en el botón abrirá un modal -->
-                <ion-button expand="block" shape="round">Agregar turno</ion-button>
+                <ion-button expand="block" shape="round" (click)="abrirModalTurnos()">Agregar turno</ion-button>
               </ion-col>
           </ion-row>
         </ion-grid>
@@ -128,18 +149,6 @@
                 </ion-card-content>
               </ion-card>
             </ion-col>
-
-            <!-- Contenedor de Cancelados 
-            <ion-col size="4">
-              <ion-card>
-                <ion-card-header>
-                  Cancelados
-                </ion-card-header>
-                <ion-card-content> -->
-                  <!-- Contenido cancelados 
-                </ion-card-content>
-              </ion-card>
-            </ion-col> -->
           </ion-row>
 
           <!-- Contenedor para la gráfica de turnos -->
@@ -151,7 +160,7 @@
                 </ion-card-header>
                 <ion-card-content>
                   <!-- gráfica de turnos -->
-                  <div #chart_div style="width: 100%; height: 350px;"></div>
+                  
                 </ion-card-content>
               </ion-card>
             </ion-col>

@@ -1,0 +1,22 @@
+ion-title {
+    padding-inline: 0px;
+    padding-bottom: 15px;
+}
+
+ion-input, ion-select {
+    background-color: #1e1e1e;
+    border-radius: 40px;
+    font-size: 16px;
+    margin-top: 5px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    --padding-start: 15px;
+}
+
+ion-footer {
+    padding: 15px;
+}
+
+.form-container {
+    padding:20px;
+}

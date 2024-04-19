@@ -1,0 +1,41 @@
+<div class="form-container">
+  <ion-title>Registrar un nuevo turno</ion-title>
+    <form>
+      <ion-grid>
+
+        <ion-row>
+          <ion-col size="6">
+            <ion-label>Fecha</ion-label>
+            <ion-input formControlName="deadline"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label>Hora</ion-label>
+            <ion-input formControlName="time"></ion-input>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row>
+          <ion-col size="6">
+            <ion-label>Prioridad</ion-label>
+            <ion-select formControlName="priority">
+              <ion-select-option value="baja">Baja</ion-select-option>
+              <ion-select-option value="media">Media</ion-select-option>
+              <ion-select-option value="alta">Alta</ion-select-option>
+            </ion-select>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label>Pendiente</ion-label>
+            <ion-select formControlName="pending">
+              <ion-select-option value="true">Verdadero</ion-select-option>
+              <ion-select-option value="false">Falso</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+</div>
+<ion-footer>
+  <div class="ion-text-right">
+    <ion-button shape="round" color="light" (click)="dismiss()">Cancelar</ion-button><ion-button shape="round">Confirmar</ion-button>
+  </div>
+</ion-footer>

@@ -2,8 +2,10 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { Platform } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { Observable, map } from 'rxjs';
+import { AgregarClienteComponent } from '../components/agregar-cliente/agregar-cliente.component';
+import { AgregarTurnoComponent } from '../components/agregar-turno/agregar-turno.component';
 declare var google: any;
 
 @Component({
@@ -16,16 +18,20 @@ export class DashboardPage implements AfterViewInit {
   pendingCount$: Observable<number>;
   nonPendingCount$: Observable<number>;
   appointments$: Observable<any[]>;
-  users$: Observable<any[]>
+  users$: Observable<any[]>;
+  clients$: Observable<any[]>;
   
   @ViewChild('chartDiv', { static: false }) chartDiv: ElementRef | undefined;
 
-  constructor(private platform: Platform, private afAuth:AngularFireAuth, private router:Router, private firestore:AngularFirestore) {
+  constructor(private platform: Platform, private afAuth:AngularFireAuth, private router:Router, private firestore:AngularFirestore, private modalController:ModalController) {
     // Seleccionar turnos
     this.appointments$ = this.firestore.collection('appointments').valueChanges();
 
     // Seleccionar usuarios
     this.users$ = this.firestore.collection('users').valueChanges();
+
+    // Seleccionar clientes
+    this.clients$ = this.firestore.collection('clients').valueChanges();
 
     // Contar el número de turnos por atender
     this.pendingCount$ = this.firestore.collection('appointments', ref =>
@@ -53,6 +59,28 @@ export class DashboardPage implements AfterViewInit {
     }).catch((error) => {
       console.error("Error signing out:", error);
     });
+  }
+
+  async abrirModalClientes() {
+    const modal = await this.modalController.create({
+      component: AgregarClienteComponent,
+      componentProps: {
+        // Pasar datos al modal
+      }
+    });
+
+    await modal.present();
+  }
+
+  async abrirModalTurnos() {
+    const modal = await this.modalController.create({
+      component: AgregarTurnoComponent,
+      componentProps: {
+        // Pasar datos al modal
+      }
+    });
+
+    await modal.present();
   }
 
   showContent(item: string) {
