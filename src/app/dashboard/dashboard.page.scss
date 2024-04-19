@@ -1,4 +1,28 @@
 /* Estilos personalizados para la página principal */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+}
+
+th:not(:first-child), td:not(:first-child) {
+  border-left: 1px solid #666666;
+}
+
+ion-grid ion-button {
+  margin-top: 35px;
+  height: 40px;
+  font-size: 18px;
+  text-transform: initial;
+  border-radius: 50px;
+  box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+  --box-shadow: none;
+}
 
 .sidebar {
     //background-color: #ed2020;

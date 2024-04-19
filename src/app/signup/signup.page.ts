@@ -55,7 +55,8 @@ export class SignupPage {
           // Guardar los datos del usuario en la BD
           await this.firestore.collection('users').doc(userCredential.user.uid).set({
             username: username,
-            email: email
+            email: email,
+            role: 'user'
             // La contraseña no se guarda como texto en la colección por razones de seguridad
           });
           

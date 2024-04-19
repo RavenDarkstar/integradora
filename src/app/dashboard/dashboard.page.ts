@@ -15,10 +15,18 @@ export class DashboardPage implements AfterViewInit {
   selectedItem: string = '';
   pendingCount$: Observable<number>;
   nonPendingCount$: Observable<number>;
+  appointments$: Observable<any[]>;
+  users$: Observable<any[]>
   
   @ViewChild('chartDiv', { static: false }) chartDiv: ElementRef | undefined;
 
   constructor(private platform: Platform, private afAuth:AngularFireAuth, private router:Router, private firestore:AngularFirestore) {
+    // Seleccionar turnos
+    this.appointments$ = this.firestore.collection('appointments').valueChanges();
+
+    // Seleccionar usuarios
+    this.users$ = this.firestore.collection('users').valueChanges();
+
     // Contar el número de turnos por atender
     this.pendingCount$ = this.firestore.collection('appointments', ref =>
       ref.where('pending', '==', true)).valueChanges().pipe(map(appointments => appointments.length));
