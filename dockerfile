@@ -7,9 +7,6 @@ WORKDIR /Users/ralan/src/app
 # Copia los archivos package.json y package-lock.json al directorio de trabajo
 COPY package*.json ./
 
-# Instala las dependencias del proyecto
-RUN npm install
-
 # Instala Ionic y Cordova de forma global
 RUN npm install -g @ionic/cli cordova
 
